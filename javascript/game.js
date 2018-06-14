@@ -1,10 +1,4 @@
-// Canvas Setup
-
-var gameCanvas = document.getElementById("gameCanvas");
-var gameCtx = gameCanvas.getContext("2d");
-
-var screenWidth = gameCanvas.width;
-var screenHeight = gameCanvas.height;
+// Type the Food
 
 var inputBox = document.getElementById("gameInput");
 
