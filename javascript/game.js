@@ -1,4 +1,18 @@
-// Main Game
+// Canvas Setup
+
+var gameCanvas = document.getElementById("gameCanvas");
+var gameCtx = gameCanvas.getContext("2d");
+
+var screenWidth = gameCanvas.width;
+var screenHeight = gameCanvas.height;
+
+var inputBox = document.getElementById("gameInput");
+
+document.addEventListener("keydown", keyDownHandler, false);
+
+/////////////////////////////////////////////////////////////
+
+// Game Setup
 
 var score = 0;
 var isGameOver = false;
@@ -24,4 +38,22 @@ function setup() {
 function levelUp() {
     numMenuItems += menuIncrement;
     numCustomers += customerIncrement;
+}
+
+/////////////////////////////////////////////////////////////
+
+// During Game
+
+function handleWordSubmit() {
+    var submitted = inputBox.value;
+    console.log(submitted);
+    inputBox.value = "";
+}
+
+// Key Handler
+function keyDownHandler(e) {
+	if (e.keyCode == 13) {
+		// 13 = enter key
+		handleWordSubmit();
+	}
 }

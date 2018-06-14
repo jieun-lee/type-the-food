@@ -4,6 +4,7 @@
 		<meta charset="utf-8"/>
         <title>Type the Food</title>
         <link type="text/css" rel="stylesheet" href="styles.css"/>
+        <script type="text/javascript", src="javascript/data.json"></script>
 	</head>
 
 	<body>
@@ -15,12 +16,20 @@
             </p>
         </div>
 
-        <canvas id="scoreCanvas" width="640" height="40"></canvas>
-		<canvas id="gameCanvas" width="640" height="320"></canvas>
-        <canvas id="typingCanvas" width="640" height="60"></canvas>
+        <div id="infoBox" class="gameSection">
+            <div class="info__wrapper">
+                Level: <span class="info__level">2</span>
+                <span class="info__spacer"></span>
+                Score: <span class="info__score">35</span>
+            </div>
+        </div>
 
-        <script type="text/javascript", src="javascript/data.json"></script>
-        <script type="text/javascript", src="javascript/canvas.js"></script>
+        <canvas id="gameCanvas" class="gameSection" width="640" height="320"></canvas>
+
+        <div id="typingBox" class="gameSection">
+            <input type="text" id="gameInput">
+        </div>
+
         <script type="text/javascript", src="javascript/game.js"></script>
 	</body>
 </html>
