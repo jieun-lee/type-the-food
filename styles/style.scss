@@ -1,3 +1,11 @@
+$main-section-width: 640px;
+$game-section-height: 360px;
+$timer-height: 30px;
+
+$person-space-width: 120px;
+
+$basic-border: 1px solid black;
+
 * {
     font-family: sans-serif;
 }
@@ -21,8 +29,8 @@
     background: #FAFAFA;
     display: block;
     margin: 0 auto;
-    width: 640px;
-    border: 1px solid black;
+    width: $main-section-width;
+    border: $basic-border;
 }
 
 .stats {
@@ -48,7 +56,7 @@
 }
 
 .game {
-    height: 360px;
+    height: $game-section-height;
 
     &__paused {
         width: 100%;
@@ -62,14 +70,64 @@
         &__customer {
 
             &__wrapper {
-                height: 320px;
+                height: $game-section-height - $timer-height;
+            }
+
+            &__row {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                width: 100%;
+                height: 35%;
+            }
+
+            &__person {
+                background-color: wheat;
+                border: $basic-border;
+                width: $person-space-width;
+                height: 80%;
+                align-self: flex-end;
+            }
+
+            &__table {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                width: 100%;
+                height: 15%;
+                background-color: #8BC34A;
+            }
+
+            &__order {
+                background-color: white;
+                border: $basic-border;
+                width: $person-space-width;
+                height: 80%;
+                align-self: center;
             }
         }
 
         &__timer {
 
             &__wrapper {
-                height: 40px;
+                height: $timer-height;
+                position: relative;
+            }
+
+            &__border {
+                width: 97%;
+                height: 60%;
+                border: $basic-border;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            &__colour {
+                width: 100%;   // -5% every 3 seconds
+                height: 100%;
+                background-color: lightpink;
             }
         }
     }
