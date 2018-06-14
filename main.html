@@ -3,37 +3,37 @@
 	<head>
 		<meta charset="utf-8"/>
         <title>Type the Food</title>
-        <link type="text/css" rel="stylesheet" href="styles.css"/>
+        <link type="text/css" rel="stylesheet" href="styles/style.css"/>
         <script type="text/javascript", src="javascript/data.json"></script>
 	</head>
 
 	<body>
-        <div id="header">
-            <h1 id="title">Type the Food</h1>
-            <p>
+        <div class="header">
+            <h1 class="header__title">Type the Food</h1>
+            <p class="header__desc">
                 Type as many food names on the menu as possible in one minute.<br>
                 Click on food names that aren't on the menu to reject the order.
             </p>
         </div>
 
-        <div id="infoBox" class="gameSection">
-            <div class="info__wrapper">
-                Level: <span class="info__level">2</span>
-                <span class="info__spacer"></span>
-                Score: <span class="info__score">35</span>
+        <div class="stats mainSection">
+            <div class="stats__wrapper">
+                Level: <span class="stats__level">2</span>
+                <span class="stats__spacer"></span>
+                Score: <span class="stats__score">35</span>
             </div>
         </div>
 
-        <div id="gameBox" class="gameSection">
-            <div class="pausedMode hidden"></div>
-            <div class="playingMode">
-                <div class="customer__wrapper"></div>
-                <div class="timer__wrapper"></div>
+        <div class="game mainSection">
+            <div class="game__paused hidden"></div>
+            <div class="game__playing">
+                <div class="game__playing__customer__wrapper"></div>
+                <div class="game__playing__timer__wrapper"></div>
             </div>
         </div>
 
-        <div id="typingBox" class="gameSection">
-            <input type="text" id="gameInput">
+        <div class="typebox mainSection">
+            <input type="text" id="gameInput" class="typebox__input">
         </div>
 
         <script type="text/javascript", src="javascript/game.js"></script>
