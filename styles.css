@@ -1,0 +1,40 @@
+/* Header Section */
+
+#header {
+    text-align: center;
+}
+
+#header h1 {
+    font-family: fantasy;
+    margin-bottom: 0;
+}
+
+#header p {
+    font-family: sans-serif;
+    margin-top: 0;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+
+/* Canvas */
+
+canvas {
+    background: #FAFAFA;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+#scoreCanvas {
+    border-bottom: none;
+}
+
+#gameCanvas {
+    border-top: none;
+}
+
+#typingCanvas {
+    border-top: 0px;
+    background: rgb(235, 245, 255);
+}
