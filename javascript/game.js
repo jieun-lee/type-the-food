@@ -1,6 +1,17 @@
 // Type the Food
 
-var inputBox = document.getElementById("gameInput");
+// DOM Selectors
+
+var levelEl;
+var scoreEl;
+var inputBox;
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    // given as a string; use parseInt(levelEl) to get the value
+    levelEl = document.getElementById("gameLevel").innerHTML;
+    scoreEl = document.getElementById("gameScore").innerHTML;
+    inputBox = document.getElementById("gameInput");
+})
 
 document.addEventListener("keydown", keyDownHandler, false);
 

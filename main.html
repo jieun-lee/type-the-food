@@ -5,6 +5,7 @@
         <title>Type the Food</title>
         <link type="text/css" rel="stylesheet" href="styles/style.css"/>
         <script type="text/javascript", src="javascript/data.json"></script>
+        <script type="text/javascript", src="javascript/game.js"></script>
 	</head>
 
 	<body>
@@ -18,9 +19,9 @@
 
         <div class="stats mainSection">
             <div class="stats__wrapper">
-                Level: <span class="stats__level">2</span>
+                Level: <span class="stats__level" id="gameLevel">2</span>
                 <span class="stats__spacer"></span>
-                Score: <span class="stats__score">35</span>
+                Score: <span class="stats__score" id="gameScore">35</span>
             </div>
         </div>
 
@@ -36,6 +37,5 @@
             <input type="text" id="gameInput" class="typebox__input">
         </div>
 
-        <script type="text/javascript", src="javascript/game.js"></script>
 	</body>
 </html>
