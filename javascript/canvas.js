@@ -1,5 +1,4 @@
-// Type the Food
-// by: Jieun Lee
+// Canvas Setup
 
 var scoreCanvas = document.getElementById("scoreCanvas");
 var gameCanvas = document.getElementById("gameCanvas");
@@ -13,8 +12,4 @@ var screenHeight = gameCanvas.height;
 var scoreBoardHeight = scoreCanvas.height;
 var typingBoardHeight = typingCanvas.height;
 
-document.addEventListener("keydown", keyDownHandler, false);
-
-var level = 1;
-var score = 0;
-var isGameOver = false;
+// document.addEventListener("keydown", keyDownHandler, false);

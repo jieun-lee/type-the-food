@@ -1,0 +1,186 @@
+[
+    {
+        "name": "bao",
+        "points" : 3
+    },
+
+    {
+        "name": "bibimbap",
+        "points" : 8
+    },
+
+    {
+        "name": "bulgogi",
+        "points" : 8
+    },
+
+    {
+        "name": "butter chicken",
+        "points" : 13
+    },
+
+    {
+        "name": "calamari",
+        "points" : 8
+    },
+
+    {
+        "name": "carbonara",
+        "points" : 9
+    },
+
+    {
+        "name": "carrot soup",
+        "points" : 10
+    },
+
+    {
+        "name": "cheeseburger",
+        "points" : 12
+    },
+
+    {
+        "name": "chicken nuggets",
+        "points" : 14
+    },
+
+    {
+        "name": "clam chowder",
+        "points" : 10
+    },
+
+    {
+        "name": "dim sum",
+        "points" : 6
+    },
+    
+    {
+        "name": "eggs benny",
+        "points" : 9
+    },
+
+    {
+        "name": "everything bagel",
+        "points" : 15
+    },
+
+    {
+        "name": "fries",
+        "points": 5
+    },
+
+    {
+        "name": "fried rice",
+        "points": 9
+    },
+
+    {
+        "name": "fruit salad",
+        "points": 10
+    },
+
+    {
+        "name": "garlic bread",
+        "points": 11
+    },
+
+    {
+        "name": "grilled cheese",
+        "points": 13
+    },
+
+    {
+        "name": "gyoza",
+        "points": 5
+    },
+
+    {
+        "name": "kimchi",
+        "points": 6
+    },
+
+    {
+        "name": "lamb souvlaki",
+        "points": 12
+    },
+
+    {
+        "name": "mac and cheese",
+        "points": 12
+    },
+
+    {
+        "name": "meatball spaghetti",
+        "points": 17
+    },
+
+    {
+        "name": "pad thai",
+        "points": 7
+    },
+
+    {
+        "name": "pepperoni pizza",
+        "points": 14
+    },
+
+    {
+        "name": "pho",
+        "points": 3
+    },
+
+    {
+        "name": "pineapple rice",
+        "points": 13
+    },
+
+    {
+        "name": "potato salad",
+        "points": 11
+    },
+
+    {
+        "name": "prawn tempura",
+        "points": 12
+    },
+
+    {
+        "name": "pudding",
+        "points": 7
+    },
+
+    {
+        "name": "rotato",
+        "points": 6
+    },
+
+    {
+        "name": "salmon nigiri",
+        "points": 12
+    },
+
+    {
+        "name": "seafood pancake",
+        "points": 14
+    },
+
+    {
+        "name": "shio ramen",
+        "points": 9
+    },
+
+    {
+        "name": "tacos",
+        "points": 5
+    },
+
+    {
+        "name": "takoyaki",
+        "points": 8
+    },
+
+    {
+        "name": "tofu",
+        "points": 4
+    }
+]
