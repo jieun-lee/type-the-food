@@ -72,9 +72,9 @@
     .stats__button:hover {
       background-color: #915AC1;
       box-shadow: inset 0px 0px 5px 0px #652FC3; }
-    .stats__button.btn-used {
+    .stats__button.btn-disabled {
       background-color: #937DA2; }
-      .stats__button.btn-used:hover {
+      .stats__button.btn-disabled:hover {
         box-shadow: none; }
 
 .game {

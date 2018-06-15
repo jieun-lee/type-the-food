@@ -52,9 +52,9 @@
                 </div>
             </div>
             <div id="playingPage" class="game__playing hidden">
-                <div class="game__playing__modal hidden">
+                <div id="modal" class="game__playing__modal hidden">
                     <div class="game__playing__modal__box">
-                        <div class="game__playing__modal__hint hidden">
+                        <div id="hintModal" class="game__playing__modal__hint hidden">
                             <h2 class="game__playing__modal__title">Hint</h2>
                             <div class="game__playing__modal__hint__row">
                                 <div class="game__playing__modal__hint__row__element">Item One</div>
@@ -73,13 +73,13 @@
                                 <div class="game__playing__modal__hint__row__element">Item Eight</div>
                             </div>
                         </div>
-                        <div class="game__playing__modal__game-over hidden">
+                        <div id="gameOverModal" class="game__playing__modal__game-over hidden">
                             <h2 class="game__playing__modal__title">Game Over</h2>
                             <p class="game__playing__modal__game-over__msg">No more lives</p>
-                            <p class="game__playing__modal__game-over__fscore">Final Score: <span id="final-score">32</span></p>
-                            <p class="game__playing__modal__game-over__hscore">High Score: <span id="high-score">48</span></p>
+                            <p class="game__playing__modal__game-over__fscore">Final Score: <span id="finalScore">0</span></p>
+                            <p class="game__playing__modal__game-over__hscore">High Score: <span id="highScore">0</span></p>
                         </div>
-                        <button class="default-button">Close</button>
+                        <button onClick="closeModal();" class="default-button">Close</button>
                     </div>
                 </div>
                 <div class="game__playing__customer__wrapper">
@@ -118,7 +118,7 @@
                 </div>
                 <div class="game__playing__timer__wrapper">
                     <div class="game__playing__timer__border">
-                        <div id="timer-bar" class="game__playing__timer__colour"></div>
+                        <div id="timerBar" class="game__playing__timer__colour"></div>
                     </div>
                 </div>
             </div>

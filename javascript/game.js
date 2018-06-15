@@ -14,11 +14,19 @@ var inputBox;
 var hintBtn;
 var reshuffleBtn;
 
+var modal;
+var hintModal;
+var gameOverModal;
+var modalFinalScore;
+var modalHighScore;
+
 var score = 0;
+var highScore = 0;
 var level = 1;
 var maxLevel = 3;
 var lives = 3;
 var maxLives = 3;
+var gameNo = 0;
 
 var numCustomers = 6;
 
@@ -46,7 +54,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     inputBox = document.getElementById("gameInput");
     hintBtn = document.getElementById("hintButton");
     reshuffleBtn = document.getElementById("reshuffleButton");
-    timerBar = document.getElementById("timer-bar");
+
+    modal = document.getElementById("modal");
+    hintModal = document.getElementById("hintModal");
+    gameOverModal = document.getElementById("gameOverModal");
+    modalFinalScore = document.getElementById("finalScore");
+    modalHighScore = document.getElementById("highScore");
+
+    timerBar = document.getElementById("timerBar");
 })
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -55,10 +70,29 @@ document.addEventListener("keydown", keyDownHandler, false);
 // GAME SETUP
 ///////////////////////////////////////////////////////////////////
 
-function startApp() {
-    startNewGame();
+// Setup for a New Game
+function startNewGame() {
+    gameNo++;
+    numMenuItems = numInitialMenuItems;
+    score = 0;
+    level = 1;
+    resetStats();
+    setCurrentPage("pausedPage");
+    populateGame();
+    isGameOver = false;
 }
 
+// Resets Stats Bar
+function resetStats() {
+    scoreEl.innerHTML = score;
+    levelEl.innerHTML = level;
+    pausedLevelEl.innerHTML = level;
+    document.getElementById("life1").classList.remove("lost-life");
+    document.getElementById("life2").classList.remove("lost-life");
+    document.getElementById("life3").classList.remove("lost-life");
+}
+
+// Sets Current Page to Given Page
 function setCurrentPage(page) {
     if (currentPage !== page) {
         switch (currentPage) {
@@ -91,14 +125,6 @@ function setCurrentPage(page) {
     }
 }
 
-// Setup for a New Game
-function startNewGame() {
-    score = 0;
-    numMenuItems = numInitialMenuItems;
-    setCurrentPage("pausedPage");
-    populateGame();
-}
-
 // Setup for the Next Level
 function levelUp() {
     level++;
@@ -118,9 +144,18 @@ function populateGame() {
     }
 }
 
+// Resets Hint and Reshuffle Button
+function resetButtons() {
+    hintUsed = false;
+    reshuffleUsed = false;
+    hintBtn.innerHTML = "Hint";
+    reshuffleBtn.innerHTML = "Reshuffle";
+    enableStatButtons(false);
+}
+
 // Ends the Current Round
-function endRound() {
-    if (!isGameOver) {
+function endRound(timerGameNo) {
+    if (!isGameOver && (timerGameNo === gameNo)) {
         if (level < maxLevel) {
             levelUp();
             setCurrentPage("pausedPage");
@@ -134,14 +169,14 @@ function endRound() {
 function setGameOver() {
     isGameOver = true;
     stopTimer();
-    console.log("Game Over!");
-}
-
-
-// increases score by given amount and updates the UI
-function increaseScore(inc) {
-    score += inc;
-    scoreEl.innerHTML = score;
+    modalFinalScore.innerHTML = score;
+    if (score > highScore) {
+        highScore = score;
+        modalHighScore.innerHTML = highScore;
+    }
+    // launch game over modal
+    modal.classList.remove("hidden");
+    gameOverModal.classList.remove("hidden");
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -151,7 +186,19 @@ function increaseScore(inc) {
 // Start the Next Round
 function startRound() {
     setCurrentPage("playingPage");
+    enableStatButtons(true);
     handleTimer();
+}
+
+// Enables/Disables Stat Buttons
+function enableStatButtons(enable) {
+    if (enable) {
+        hintBtn.classList.remove("btn-disabled");
+        reshuffleBtn.classList.remove("btn-disabled");
+    } else {
+        hintBtn.classList.add("btn-disabled");
+        reshuffleBtn.classList.add("btn-disabled");
+    }
 }
 
 // Update the Paused Page and Hint Pages with New Menu
@@ -159,6 +206,7 @@ function updateMenuLists() {
 
     // remove all existent menu items
     pausedMenu.innerHTML = "";
+
 
     // loop through new menu and add nodes for them
     for (var i = 0; i < menu.length; i++) {
@@ -179,6 +227,12 @@ function toggleInputBox(enabled) {
 ///////////////////////////////////////////////////////////////////
 // GAME PLAY
 ///////////////////////////////////////////////////////////////////
+
+// increases score by given amount and updates the UI
+function increaseScore(inc) {
+    score += inc;
+    scoreEl.innerHTML = score;
+}
 
 // Adds a New Order for the Given Customer
 function setCustomerOrder(custNo, delay = true) {
@@ -202,22 +256,27 @@ function setCustomerOrder(custNo, delay = true) {
     }, timeout);
 }
 
-// Resets Hint and Reshuffle Button
-function resetButtons() {
-    hintUsed = false;
-    reshuffleUsed = false;
-    hintBtn.classList.remove("btn-used");
-    reshuffleBtn.classList.remove("btn-used");
-    hintBtn.innerHTML = "Hint";
-    reshuffleBtn.innerHTML = "Reshuffle";
+// Closes the Modal; if Game Over, starts a new game
+function closeModal() {
+    modal.classList.add("hidden");
+    hintModal.classList.add("hidden");
+    gameOverModal.classList.add("hidden");
+
+    if (isGameOver) {
+        startNewGame();
+    }
 }
 
 // If hint is unused, display the menu (max 3 seconds)
 function getHint() {
     if (!hintUsed && !isGameOver && (currentPage === "playingPage")) {
-        alert("hint!");
+        // show modal
+        modal.classList.remove("hidden");
+        hintModal.classList.remove("hidden");
+
+        // configure hint
         hintUsed = true;
-        hintBtn.classList.add("btn-used");
+        hintBtn.classList.add("btn-disabled");
         hintBtn.innerHTML = "No Hints Left";
     }
 }
@@ -226,7 +285,7 @@ function getHint() {
 function reshuffle() {
     if (!reshuffleUsed && !isGameOver && (currentPage === "playingPage")) {
         reshuffleUsed = true;
-        reshuffleBtn.classList.add("btn-used");
+        reshuffleBtn.classList.add("btn-disabled");
         reshuffleBtn.innerHTML = "No Shuffles Left";
         for (var i = 0; i < numCustomers; i++) {
             setCustomerOrder(i+1, false);
@@ -308,7 +367,7 @@ function stopTimer() {
 
 // Handles Timer Bar
 function handleTimer() {
-    
+    var currentGame = gameNo;
     var percentage = 100;
     var tickLength = gameLength / 400;
     timerBar.style.width = "100%";
@@ -320,7 +379,7 @@ function handleTimer() {
 
     setTimeout(function() {
         stopTimer();
-        endRound();
+        endRound(currentGame);
     }, gameLength);
 }
 
@@ -330,5 +389,5 @@ function handleTimer() {
 
 // Starts the Game Application for the First Time
 document.addEventListener("DOMContentLoaded", function(event) {
-    startApp();
+    startNewGame();
 })
