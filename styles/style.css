@@ -121,9 +121,11 @@
       .game__playing__modal__title {
         margin-top: 0;
         margin-bottom: 16px; }
-      .game__playing__modal__hint__row__element {
+      .game__playing__modal__hint__col {
         display: inline-block;
-        margin: 2px 8px; }
+        margin: 0 16px; }
+        .game__playing__modal__hint__col__element {
+          margin: 4px 0; }
       .game__playing__modal__game-over__msg {
         font-style: italic;
         font-size: 0.95rem;

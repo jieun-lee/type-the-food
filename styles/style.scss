@@ -188,10 +188,12 @@ $basic-border: 1px solid black;
             }
 
             &__hint {
-                &__row {
+                &__col {
+                    display: inline-block;
+                    margin: 0 16px;
+
                     &__element {
-                        display: inline-block;
-                        margin: 2px 8px;
+                        margin: 4px 0;
                     }
                 }
             }

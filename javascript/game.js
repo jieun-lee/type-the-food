@@ -209,19 +209,8 @@ function updateMenuLists() {
 
     // remove all existent menu items
     pausedMenu.innerHTML = "";
-
-    // show relevant rows only on hint page
-    document.getElementById("hintRow1").classList.remove("hidden");
-    document.getElementById("hintRow2").classList.remove("hidden");
-    if (level === 1) {
-        document.getElementById("hintRow3").classList.add("hidden");
-        document.getElementById("hintRow4").classList.add("hidden");
-    } else if (level === 2) {
-        document.getElementById("hintRow3").classList.remove("hidden");
-        document.getElementById("hintRow4").classList.add("hidden");
-    } else if (level === 3) {
-        document.getElementById("hintRow3").classList.remove("hidden");
-        document.getElementById("hintRow4").classList.remove("hidden");
+    for (var i = 0; i < 8; i++) {
+        document.getElementById("hintItem" + (i+1)).innerHTML = "";
     }
 
     // loop through new menu
