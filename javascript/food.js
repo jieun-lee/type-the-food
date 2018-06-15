@@ -1,49 +1,74 @@
 var data = [
+    "baguette",
     "bao buns",
     "beef teriyaki",
     "bibimbap",
+    "bubble waffle",
     "bulgogi",
     "butter chicken",
     "calamari",
+    "california roll",
     "carbonara",
     "carrot soup",
     "cheeseburger",
     "chicken nuggets",
     "clam chowder",
+    "crepe",
+    "croissant",
+    "curry",
     "dim sum",
+    "donburi",
     "eggs benny",
     "everything bagel",
+    "fish and chips",
     "fries",
+    "fried chicken",
     "fried rice",
     "fruit salad",
     "garlic bread",
     "grilled cheese",
     "gyoza",
+    "hotdogs",
     "jasmine rice",
+    "jelly donut",
     "kimchi",
     "lamb souvlaki",
+    "lobster",
     "mac and cheese",
     "mango pudding",
     "meatball spaghetti",
+    "nachos",
+    "onion rings",
     "pad thai",
     "pepperoni pizza",
     "pho",
     "pineapple rice",
+    "pork cutlet",
     "potato salad",
+    "poutine",
     "prawn tempura",
+    "pumpkin pie",
+    "ricecake",
     "rotato",
     "salmon nigiri",
     "seafood pancake",
     "shio ramen",
+    "spring rolls",
+    "steak",
     "tacos",
     "takoyaki",
+    "tater tots",
     "tofu",
-    "yakisoba"
+    "vongole",
+    "wonton soup",
+    "yakisoba",
+    "yaki udon"
 ];
 
 var menu = [];
-var numInitItems = 6;
 var menuIncrement = 2;
+var numInitialMenuItems = 6;
+var numMenuItems = numInitialMenuItems;
 
 
 // returns the number of points a food item is worth
@@ -54,11 +79,6 @@ function getPts(food) {
 // checks if the food item is in the menu
 function isInMenu(food) {
     return menu.includes(food);
-}
-
-// check if the food item is in the list of all foods
-function isInFoodList(food) {
-    return data.includes(food);
 }
 
 // returns an item on the menu or a random item
@@ -92,10 +112,8 @@ function addToMenu(numAdd) {
     console.log(menu);
 }
 
-// initializes the menu
-function initializeMenu() {
+// recreates menu with numMenuItems
+function resetMenu() {
     menu = [];
-    addToMenu(numInitItems);
+    addToMenu(numMenuItems);
 }
-
-initializeMenu();

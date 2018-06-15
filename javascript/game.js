@@ -1,69 +1,50 @@
 // Type the Food
-
-// DOM Selectors
+// by: Jieun Lee
 
 var levelEl;
 var scoreEl;
 var inputBox;
 
+var level = 1;
+var score = 0;
+var numCustomers = 6;
+var isGameOver = false;
+
+var incorrectRejectionPts = -1;
+var correctRejectionPts = 2;
+
+var customerOrders = {};
+
 document.addEventListener("DOMContentLoaded", function(event) {
-    // given as a string; use parseInt(levelEl) to get the value
-    levelEl = document.getElementById("gameLevel").innerHTML;
-    scoreEl = document.getElementById("gameScore").innerHTML;
+    levelEl = document.getElementById("gameLevel");
+    scoreEl = document.getElementById("gameScore");
     inputBox = document.getElementById("gameInput");
 })
 
 document.addEventListener("keydown", keyDownHandler, false);
 
-/////////////////////////////////////////////////////////////
 
-// Game Setup
-
-var score = 0;
-var isGameOver = false;
-
-var level = 1;
-var numMenuItems;
-var numCustomers;
-
-var customerOrders = {};
-
-// var menuIncrement = 2;
-var customerIncrement = 2;
-
-var initialMenuItems = 8;
-var initialCustomers = 6;
-
-// Restart the Game
-function setup() {
+// Setup for a New Game
+function startNewGame() {
     score = 0;
-    numMenuItems = initialMenuItems;
-    numCustomers = initialCustomers;
-
-    for (var i = 0; i < numCustomers; i++) {
-        setCustomerOrder(i+1);
-    }
+    numMenuItems = numInitialMenuItems;
+    populateGame();
 }
 
-// Level Up
+// Setup for the Next Level
 function levelUp() {
+    level++;
+    levelEl.innerHTML = level;
     numMenuItems += menuIncrement;
-    numCustomers += customerIncrement;
+    populateGame();
 }
 
-// Adds a New Order for the Customer
-function setCustomerOrder(custNo) {
-    var food = getItem();
-    customerOrders[custNo] = food;
-
-    // Display on Screen
-    var foodText = food.split(' ');
-    for(var i = 0; i < foodText.length; i++){
-        foodText[i] = foodText[i].split('');
-        foodText[i][0] = foodText[i][0].toUpperCase(); 
-        foodText[i] = foodText[i].join('');
+// Resets the Menu and Sets Orders for All Customers
+function populateGame() {
+    resetMenu();
+    for (var i = 0; i < numCustomers; i++) {
+        setCustomerOrder(i+1, false);
     }
-    document.getElementById("orderc" + custNo).children[0].innerHTML = foodText.join(' ');
 }
 
 // Game Over State
@@ -72,18 +53,42 @@ function setGameOver() {
     console.log("Game Over!");
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    setup();
-})
-
-/////////////////////////////////////////////////////////////
-
-// During Game
 
 // increases score by given amount and updates the UI
 function increaseScore(inc) {
     score += inc;
-    console.log("score is now " + score);
+    scoreEl.innerHTML = score;
+}
+
+
+// Adds a New Order for the Given Customer
+function setCustomerOrder(custNo, delay = true) {
+    var timeout = 2000;
+    var orderEl = document.getElementById("orderc" + custNo).children[0];
+
+    // remove current order
+    customerOrders[custNo] = null;
+    orderEl.innerHTML = "";
+
+    // get new food item
+    var food = getItem();
+    var foodText = food.split(' ');
+    for(var i = 0; i < foodText.length; i++){
+        foodText[i] = foodText[i].split('');
+        foodText[i][0] = foodText[i][0].toUpperCase(); 
+        foodText[i] = foodText[i].join('');
+    }
+
+    // set timeout to 0 if there should not be a delay
+    if (!delay) {
+        timeout = 0;
+    }
+
+    // set new order
+    setTimeout(function() {
+        customerOrders[custNo] = food;
+        orderEl.innerHTML = foodText.join(' ');
+    }, timeout);
 }
 
 // handles submit when enter is pressed
@@ -112,13 +117,13 @@ function handleWordSubmit() {
         var custId = parseInt(submitted, 10);
         if (custId > 0 && custId <= numCustomers) {
             if (isInMenu(customerOrders[custId])) {
-                setGameOver();
+                increaseScore(incorrectRejectionPts);
             } else {
+                increaseScore(correctRejectionPts);
                 setCustomerOrder(custId);
             }
         }
     }
-
     inputBox.value = "";
 }
 
@@ -129,3 +134,9 @@ function keyDownHandler(e) {
 		handleWordSubmit();
 	}
 }
+
+
+// Starts the Game
+document.addEventListener("DOMContentLoaded", function(event) {
+    startNewGame();
+})
