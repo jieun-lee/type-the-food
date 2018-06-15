@@ -17,6 +17,7 @@ var reshuffleBtn;
 var modal;
 var hintModal;
 var gameOverModal;
+var gameOverMsg;
 var modalFinalScore;
 var modalHighScore;
 
@@ -58,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     modal = document.getElementById("modal");
     hintModal = document.getElementById("hintModal");
     gameOverModal = document.getElementById("gameOverModal");
+    gameOverMsg = document.getElementById("gameOverMsg");
     modalFinalScore = document.getElementById("finalScore");
     modalHighScore = document.getElementById("highScore");
 
@@ -76,6 +78,7 @@ function startNewGame() {
     numMenuItems = numInitialMenuItems;
     score = 0;
     level = 1;
+    lives = maxLives;
     resetStats();
     setCurrentPage("pausedPage");
     populateGame();
@@ -175,8 +178,7 @@ function setGameOver() {
         modalHighScore.innerHTML = highScore;
     }
     // launch game over modal
-    modal.classList.remove("hidden");
-    gameOverModal.classList.remove("hidden");
+    launchModal("gameOver");
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -256,11 +258,34 @@ function setCustomerOrder(custNo, delay = true) {
     }, timeout);
 }
 
+// Launches Modal of Given Type
+function launchModal(type = "hint") {
+    toggleInputBox(false);
+    modal.classList.remove("hidden");
+    
+    // launch Hint Modal (type === "gameOver")
+    if (type === "gameOver") {
+        gameOverModal.classList.remove("hidden");
+        if (lives <= 0) {
+            gameOverMsg.innerHTML = "No more lives";
+        } else if (level >= maxLevel) {
+            gameOverMsg.innerHTML = "All 3 Levels Complete!";
+        } else {
+            gameOverMsg.innerHTML = "";
+        }
+    }
+    // launch Game Over Modal (type === "hint")
+    else {
+        hintModal.classList.remove("hidden");
+    }
+}
+
 // Closes the Modal; if Game Over, starts a new game
 function closeModal() {
     modal.classList.add("hidden");
     hintModal.classList.add("hidden");
     gameOverModal.classList.add("hidden");
+    toggleInputBox(true);
 
     if (isGameOver) {
         startNewGame();
@@ -271,8 +296,7 @@ function closeModal() {
 function getHint() {
     if (!hintUsed && !isGameOver && (currentPage === "playingPage")) {
         // show modal
-        modal.classList.remove("hidden");
-        hintModal.classList.remove("hidden");
+        launchModal("hint");
 
         // configure hint
         hintUsed = true;
