@@ -26,6 +26,8 @@ var level = 1;
 var numMenuItems;
 var numCustomers;
 
+var customerOrders = {};
+
 // var menuIncrement = 2;
 var customerIncrement = 2;
 
@@ -49,14 +51,25 @@ function levelUp() {
     numCustomers += customerIncrement;
 }
 
+// Adds a New Order for the Customer
 function setCustomerOrder(custNo) {
-    var food = getItem().split(' ');
-    for(var i = 0; i < food.length; i++){
-        food[i] = food[i].split('');
-        food[i][0] = food[i][0].toUpperCase(); 
-        food[i] = food[i].join('');
+    var food = getItem();
+    customerOrders[custNo] = food;
+
+    // Display on Screen
+    var foodText = food.split(' ');
+    for(var i = 0; i < foodText.length; i++){
+        foodText[i] = foodText[i].split('');
+        foodText[i][0] = foodText[i][0].toUpperCase(); 
+        foodText[i] = foodText[i].join('');
     }
-    document.getElementById("orderc" + custNo).children[0].innerHTML = food.join(' ');
+    document.getElementById("orderc" + custNo).children[0].innerHTML = foodText.join(' ');
+}
+
+// Game Over State
+function setGameOver() {
+    isGameOver = true;
+    console.log("Game Over!");
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -75,14 +88,37 @@ function increaseScore(inc) {
 
 // handles submit when enter is pressed
 function handleWordSubmit() {
-    var submitted = inputBox.value;
-    // check if it's being displayed atm
-    if (isInMenu(submitted)) {
-        increaseScore(getPts(submitted) * level);
-    } else if (isInFoodList(submitted)) {
-        console.log("Game Over");
+    var submitted = inputBox.value.toLowerCase();
+
+    // if submitted value is not a number
+    if (isNaN(submitted)) {
+        var keyFound = false;
+        // checks if text is in current list of customer orders
+        Object.keys(customerOrders).forEach(function (custId) {
+            if ((keyFound === false) && (customerOrders[custId] == submitted)) {
+                if (isInMenu(submitted)) {
+                    increaseScore(getPts(submitted) * level);
+                    setCustomerOrder(custId);
+                } else {
+                    setGameOver();
+                }
+                keyFound = true;
+            }
+        });
     }
-    console.log(submitted);
+
+    // if submitted value is a number
+    else {
+        var custId = parseInt(submitted, 10);
+        if (custId > 0 && custId <= numCustomers) {
+            if (isInMenu(customerOrders[custId])) {
+                setGameOver();
+            } else {
+                setCustomerOrder(custId);
+            }
+        }
+    }
+
     inputBox.value = "";
 }
 

@@ -53,13 +53,12 @@ function getPts(food) {
 
 // checks if the food item is in the menu
 function isInMenu(food) {
-    var str = food.toLowerCase();
-    return menu.includes(str);
+    return menu.includes(food);
 }
 
+// check if the food item is in the list of all foods
 function isInFoodList(food) {
-    var str = food.toLowerCase();
-    return data.includes(str);
+    return data.includes(food);
 }
 
 // returns an item on the menu or a random item
