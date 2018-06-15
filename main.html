@@ -36,16 +36,11 @@
             <div id="instructionsPage" class="game__instructions hidden">
                 <h1 class="game__instructions__title">How to Play</h1>
                 <p>This is how you play.</p>
-                <button onClick="setCurrentPage('pausedPage');">Back</button>
+                <button onClick="setCurrentPage('pausedPage');" class="game__instructions__button">Back</button>
             </div>
             <div id="pausedPage" class="game__paused">
-                <h1 class="game__paused__title">Level 1</h1>
-                <ul>
-                    <li>Beef Teriyaki</li>
-                    <li>Calamari</li>
-                    <li>Pepperoni Pizza</li>
-                    <li>Bao Buns</li>
-                </ul>
+                <h1 class="game__paused__title">Level <span id="pausedPageLevel">1</span></h1>
+                <div id="pausedMenuList" class="game__paused__menu"></div>    
                 <div class="game__paused__button-bar">
                     <button onClick="startRound();">Start</button>
                     <button onClick="setCurrentPage('instructionsPage');">Instructions</button>

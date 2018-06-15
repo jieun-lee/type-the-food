@@ -67,7 +67,7 @@ var data = [
 
 var menu = [];
 var menuIncrement = 2;
-var numInitialMenuItems = 6;
+var numInitialMenuItems = 4;
 var numMenuItems = numInitialMenuItems;
 
 
@@ -110,6 +110,17 @@ function addToMenu(numAdd) {
         menu.push(data[index]);
     }
     console.log(menu);
+}
+
+// format food name to capitalize first letter of each word
+function formatDisplayName(name) {
+    var text = name.split(' ');
+    for(var i = 0; i < text.length; i++){
+        text[i] = text[i].split('');
+        text[i][0] = text[i][0].toUpperCase(); 
+        text[i] = text[i].join('');
+    }
+    return text.join(' ');
 }
 
 // recreates menu with numMenuItems

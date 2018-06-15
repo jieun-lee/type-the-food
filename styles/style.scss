@@ -1,6 +1,7 @@
 $main-section-width: 640px;
 $game-section-height: 360px;
 $timer-height: 30px;
+$page-padding: 1.5rem;
 
 $person-space-width: 120px;
 
@@ -99,14 +100,61 @@ $basic-border: 1px solid black;
 .game {
     height: $game-section-height;
 
+    &__instructions {
+        padding: $page-padding;
+        text-align: center;
+
+        &__title {
+            margin: 0;
+        }
+
+        &__button {
+            width: 120px;
+            height: 32px;
+            font-size: 1rem;
+            border-radius: $level-border-radius;
+            margin: 4px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
     &__paused {
-        width: 100%;
-        height: 100%;
+        padding: $page-padding;
+        text-align: center;
+
+        &__title {
+            margin: 0;
+        }
+
+        &__menu {
+            margin-top: 20px;
+            margin-bottom: 12px;
+
+            &__item {
+                padding-bottom: 8px;
+            }
+        }
+
+        &__button-bar {
+
+            & button {
+                width: 120px;
+                height: 32px;
+                font-size: 1rem;
+                border-radius: $level-border-radius;
+                margin: 4px;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
     }
     
     &__playing {
-        width: 100%;
-        height: 100%;
 
         &__customer {
 

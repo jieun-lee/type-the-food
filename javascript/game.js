@@ -6,14 +6,17 @@ var pausedPage;
 var playingPage;
 var currentPage = "pausedPage";
 
+var pausedLevelEl;
 var levelEl;
 var scoreEl;
+var pausedMenu;
 var inputBox;
 var hintBtn;
 var reshuffleBtn;
 
-var level = 1;
 var score = 0;
+var level = 1;
+var maxLevel = 3;
 var numCustomers = 6;
 var hintUsed = false;
 var reshuffleUsed = false;
@@ -30,8 +33,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     pausedPage = document.getElementById("pausedPage");
     playingPage = document.getElementById("playingPage");
 
+    pausedLevelEl = document.getElementById("pausedPageLevel");
     levelEl = document.getElementById("gameLevel");
     scoreEl = document.getElementById("gameScore");
+    pausedMenu = document.getElementById("pausedMenuList");
     inputBox = document.getElementById("gameInput");
     hintBtn = document.getElementById("hintButton");
     reshuffleBtn = document.getElementById("reshuffleButton");
@@ -87,6 +92,7 @@ function startNewGame() {
 function levelUp() {
     level++;
     levelEl.innerHTML = level;
+    pausedLevelEl.innerHTML = level;
     numMenuItems += menuIncrement;
     populateGame();
 }
@@ -94,9 +100,19 @@ function levelUp() {
 // Resets the Menu and Sets Orders for All Customers
 function populateGame() {
     resetMenu();
+    updateMenuLists();
     resetButtons();
     for (var i = 0; i < numCustomers; i++) {
         setCustomerOrder(i+1, false);
+    }
+}
+
+function endRound() {
+    setCurrentPage("pausedPage");
+    if (level < maxLevel) {
+        levelUp();
+    } else {
+        setGameOver();
     }
 }
 
@@ -119,8 +135,24 @@ function increaseScore(inc) {
 
 // Start the Next Round
 function startRound() {
-    console.log("new round");
+    setCurrentPage("playingPage");
     handleTimer();
+}
+
+// Update the Paused Page and Hint Pages with New Menu
+function updateMenuLists() {
+
+    // remove all existent menu items
+    pausedMenu.innerHTML = "";
+
+    // loop through new menu and add nodes for them
+    for (var i = 0; i < menu.length; i++) {
+        var node = document.createElement("div");
+        var menuItem = document.createTextNode(formatDisplayName(menu[i]));
+        node.classList.add("game__paused__menu__item");
+        node.appendChild(menuItem);
+        pausedMenu.appendChild(node);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -136,15 +168,6 @@ function setCustomerOrder(custNo, delay = true) {
     customerOrders[custNo] = null;
     orderEl.innerHTML = "";
 
-    // get new food item
-    var food = getItem();
-    var foodText = food.split(' ');
-    for(var i = 0; i < foodText.length; i++){
-        foodText[i] = foodText[i].split('');
-        foodText[i][0] = foodText[i][0].toUpperCase(); 
-        foodText[i] = foodText[i].join('');
-    }
-
     // set timeout to 0 if there should not be a delay
     if (!delay) {
         timeout = 0;
@@ -152,8 +175,9 @@ function setCustomerOrder(custNo, delay = true) {
 
     // set new order
     setTimeout(function() {
+        var food = getItem();
         customerOrders[custNo] = food;
-        orderEl.innerHTML = foodText.join(' ');
+        orderEl.innerHTML = formatDisplayName(food);
     }, timeout);
 }
 
@@ -247,6 +271,7 @@ function handleTimer() {
     setTimeout(function() {
         timerBar.style.width = "0%";
         clearInterval(timer);
+        endRound();
     }, gameLength);
 }
 
