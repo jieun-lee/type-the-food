@@ -100,10 +100,20 @@ $basic-border: 1px solid black;
 
             &__order {
                 background-color: white;
+                position: relative;
                 border: $basic-border;
                 width: $person-space-width;
                 height: 80%;
                 align-self: center;
+
+                &__item {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 0.8rem;
+                    text-align: center;
+                }
             }
         }
 

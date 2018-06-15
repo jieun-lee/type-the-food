@@ -66,10 +66,18 @@
       background-color: #8BC34A; }
     .game__playing__customer__order {
       background-color: white;
+      position: relative;
       border: 1px solid black;
       width: 120px;
       height: 80%;
       align-self: center; }
+      .game__playing__customer__order__item {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 0.8rem;
+        text-align: center; }
     .game__playing__timer__wrapper {
       height: 30px;
       position: relative; }

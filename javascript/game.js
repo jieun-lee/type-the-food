@@ -26,7 +26,7 @@ var level = 1;
 var numMenuItems;
 var numCustomers;
 
-var menuIncrement = 2;
+// var menuIncrement = 2;
 var customerIncrement = 2;
 
 var initialMenuItems = 8;
@@ -37,6 +37,10 @@ function setup() {
     score = 0;
     numMenuItems = initialMenuItems;
     numCustomers = initialCustomers;
+
+    for (var i = 0; i < numCustomers; i++) {
+        setCustomerOrder(i+1);
+    }
 }
 
 // Level Up
@@ -44,6 +48,15 @@ function levelUp() {
     numMenuItems += menuIncrement;
     numCustomers += customerIncrement;
 }
+
+function setCustomerOrder(custNo) {
+    var food = getItem();
+    document.getElementById("orderc" + custNo).children[0].innerHTML = food;
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    setup();
+})
 
 /////////////////////////////////////////////////////////////
 
