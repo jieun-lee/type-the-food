@@ -1,6 +1,11 @@
 // Type the Food
 // by: Jieun Lee
 
+var instructionsPage;
+var pausedPage;
+var playingPage;
+var currentPage = "pausedPage";
+
 var levelEl;
 var scoreEl;
 var inputBox;
@@ -21,6 +26,10 @@ var correctRejectionPts = 2;
 var customerOrders = {};
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    instructionsPage = document.getElementById("instructionsPage");
+    pausedPage = document.getElementById("pausedPage");
+    playingPage = document.getElementById("playingPage");
+
     levelEl = document.getElementById("gameLevel");
     scoreEl = document.getElementById("gameScore");
     inputBox = document.getElementById("gameInput");
@@ -30,11 +39,47 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 document.addEventListener("keydown", keyDownHandler, false);
 
+///////////////////////////////////////////////////////////////////
+// GAME SETUP
+///////////////////////////////////////////////////////////////////
+
+function startApp() {
+    startNewGame();
+}
+
+function setCurrentPage(page) {
+    if (currentPage !== page) {
+        switch (currentPage) {
+            case "instructionsPage":
+                instructionsPage.classList.add("hidden");
+                break;
+            case "pausedPage":
+                pausedPage.classList.add("hidden");
+                break;
+            case "playingPage":
+                playingPage.classList.add("hidden");
+                break;
+        }
+        currentPage = page;
+        switch (page) {
+            case "instructionsPage":
+                instructionsPage.classList.remove("hidden");
+                break;
+            case "pausedPage":
+                pausedPage.classList.remove("hidden");
+                break;
+            case "playingPage":
+                playingPage.classList.remove("hidden");
+                break;
+        }
+    }
+}
 
 // Setup for a New Game
 function startNewGame() {
     score = 0;
     numMenuItems = numInitialMenuItems;
+    setCurrentPage("pausedPage");
     populateGame();
 }
 
@@ -53,7 +98,6 @@ function populateGame() {
     for (var i = 0; i < numCustomers; i++) {
         setCustomerOrder(i+1, false);
     }
-    // handleTimer();
 }
 
 // Game Over State
@@ -69,6 +113,19 @@ function increaseScore(inc) {
     scoreEl.innerHTML = score;
 }
 
+///////////////////////////////////////////////////////////////////
+// PAUSED PAGE
+///////////////////////////////////////////////////////////////////
+
+// Start the Next Round
+function startRound() {
+    console.log("new round");
+    handleTimer();
+}
+
+///////////////////////////////////////////////////////////////////
+// GAME PLAY
+///////////////////////////////////////////////////////////////////
 
 // Adds a New Order for the Given Customer
 function setCustomerOrder(custNo, delay = true) {
@@ -193,8 +250,11 @@ function handleTimer() {
     }, gameLength);
 }
 
+///////////////////////////////////////////////////////////////////
+// START
+///////////////////////////////////////////////////////////////////
 
-// Starts the Game
+// Starts the Game Application for the First Time
 document.addEventListener("DOMContentLoaded", function(event) {
-    startNewGame();
+    startApp();
 })
