@@ -160,6 +160,7 @@ function resetButtons() {
 function endRound(timerGameNo) {
     if (!isGameOver && (timerGameNo === gameNo)) {
         if (level < maxLevel) {
+            closeModal();
             levelUp();
             setCurrentPage("pausedPage");
         } else {
@@ -209,13 +210,33 @@ function updateMenuLists() {
     // remove all existent menu items
     pausedMenu.innerHTML = "";
 
+    // show relevant rows only on hint page
+    document.getElementById("hintRow1").classList.remove("hidden");
+    document.getElementById("hintRow2").classList.remove("hidden");
+    if (level === 1) {
+        document.getElementById("hintRow3").classList.add("hidden");
+        document.getElementById("hintRow4").classList.add("hidden");
+    } else if (level === 2) {
+        document.getElementById("hintRow3").classList.remove("hidden");
+        document.getElementById("hintRow4").classList.add("hidden");
+    } else if (level === 3) {
+        document.getElementById("hintRow3").classList.remove("hidden");
+        document.getElementById("hintRow4").classList.remove("hidden");
+    }
 
-    // loop through new menu and add nodes for them
+    // loop through new menu
     for (var i = 0; i < menu.length; i++) {
+        // get formatted menu item
+        var menuItem = formatDisplayName(menu[i]);
+
+        // change text on hint page menu
+        document.getElementById("hintItem" + (i+1)).innerHTML = menuItem;
+
+        // add new nodes for paused page menu
         var node = document.createElement("div");
-        var menuItem = document.createTextNode(formatDisplayName(menu[i]));
+        var textNode = document.createTextNode(menuItem);
         node.classList.add("game__paused__menu__item");
-        node.appendChild(menuItem);
+        node.appendChild(textNode);
         pausedMenu.appendChild(node);
     }
 }
@@ -262,7 +283,7 @@ function setCustomerOrder(custNo, delay = true) {
 function launchModal(type = "hint") {
     toggleInputBox(false);
     modal.classList.remove("hidden");
-    
+
     // launch Hint Modal (type === "gameOver")
     if (type === "gameOver") {
         gameOverModal.classList.remove("hidden");
