@@ -41,17 +41,47 @@
             <div id="instructionsPage" class="game__instructions hidden">
                 <h1 class="game__instructions__title">How to Play</h1>
                 <p>This is how you play.</p>
-                <button onClick="setCurrentPage('pausedPage');" class="game__instructions__button">Back</button>
+                <button onClick="setCurrentPage('pausedPage');" class="default-button">Back</button>
             </div>
             <div id="pausedPage" class="game__paused">
                 <h1 class="game__paused__title">Level <span id="pausedPageLevel">1</span></h1>
                 <div id="pausedMenuList" class="game__paused__menu"></div>    
                 <div class="game__paused__button-bar">
-                    <button onClick="startRound();">Start</button>
-                    <button onClick="setCurrentPage('instructionsPage');">Instructions</button>
+                    <button onClick="startRound();" class="default-button">Start</button>
+                    <button onClick="setCurrentPage('instructionsPage');" class="default-button">Instructions</button>
                 </div>
             </div>
             <div id="playingPage" class="game__playing hidden">
+                <div class="game__playing__modal hidden">
+                    <div class="game__playing__modal__box">
+                        <div class="game__playing__modal__hint hidden">
+                            <h2 class="game__playing__modal__title">Hint</h2>
+                            <div class="game__playing__modal__hint__row">
+                                <div class="game__playing__modal__hint__row__element">Item One</div>
+                                <div class="game__playing__modal__hint__row__element">Item Two</div>
+                            </div>
+                            <div class="game__playing__modal__hint__row">
+                                <div class="game__playing__modal__hint__row__element">Item Three</div>
+                                <div class="game__playing__modal__hint__row__element">Item Four</div>
+                            </div>
+                            <div class="game__playing__modal__hint__row">
+                                <div class="game__playing__modal__hint__row__element">Item Five</div>
+                                <div class="game__playing__modal__hint__row__element">Item Six</div>
+                            </div>
+                            <div class="game__playing__modal__hint__row">
+                                <div class="game__playing__modal__hint__row__element">Item Seven</div>
+                                <div class="game__playing__modal__hint__row__element">Item Eight</div>
+                            </div>
+                        </div>
+                        <div class="game__playing__modal__game-over hidden">
+                            <h2 class="game__playing__modal__title">Game Over</h2>
+                            <p class="game__playing__modal__game-over__msg">No more lives</p>
+                            <p class="game__playing__modal__game-over__fscore">Final Score: <span id="final-score">32</span></p>
+                            <p class="game__playing__modal__game-over__hscore">High Score: <span id="high-score">48</span></p>
+                        </div>
+                        <button class="default-button">Close</button>
+                    </div>
+                </div>
                 <div class="game__playing__customer__wrapper">
                     <div class="game__playing__customer__row">
                         <div class="cust1 game__playing__customer__person"></div>

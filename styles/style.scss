@@ -5,7 +5,7 @@ $page-padding: 1.5rem;
 
 $person-space-width: 120px;
 
-$level-border-radius: 20px;
+$border-radius-default: 20px;
 $button-border-radius: 15px;
 $basic-border: 1px solid black;
 
@@ -61,7 +61,7 @@ $basic-border: 1px solid black;
     &__level {
         display: inline-block;
         border: $basic-border;
-        border-radius: $level-border-radius;
+        border-radius: $border-radius-default;
         margin: 0 8px;
         padding: 4px 12px;
         background-color: #CDE3F7;
@@ -132,18 +132,6 @@ $basic-border: 1px solid black;
         &__title {
             margin: 0;
         }
-
-        &__button {
-            width: 120px;
-            height: 32px;
-            font-size: 1rem;
-            border-radius: $level-border-radius;
-            margin: 4px;
-
-            &:focus {
-                outline: none;
-            }
-        }
     }
 
     &__paused {
@@ -162,24 +150,70 @@ $basic-border: 1px solid black;
                 padding-bottom: 8px;
             }
         }
-
-        &__button-bar {
-
-            & button {
-                width: 120px;
-                height: 32px;
-                font-size: 1rem;
-                border-radius: $level-border-radius;
-                margin: 4px;
-
-                &:focus {
-                    outline: none;
-                }
-            }
-        }
     }
     
     &__playing {
+        position: relative;
+
+        &__modal {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            
+            &__box {
+                border: $basic-border;
+                border-radius: $border-radius-default;
+                padding: 24px;
+                width: 50%;
+                min-height: 96px;
+                margin: auto;
+                transform: translateY(-5%);
+                background-color: white;
+                text-align: center;
+
+                & button {
+                    margin-top: 16px;
+                }
+            }
+
+            &__title {
+                margin-top: 0;
+                margin-bottom: 16px;
+            }
+
+            &__hint {
+                &__row {
+                    &__element {
+                        display: inline-block;
+                        margin: 2px 8px;
+                    }
+                }
+            }
+
+            &__game-over {
+                &__msg {
+                    font-style: italic;
+                    font-size: 0.95rem;
+                    margin-top: -8px;
+                }
+
+                &__fscore {
+                    margin-bottom: 0;
+                }
+
+                &__hscore {
+                    margin-top: 4px;
+                    margin-bottom: 0;
+                    font-size: 0.9rem;
+                }
+            }
+        }
 
         &__customer {
 
@@ -281,4 +315,16 @@ $basic-border: 1px solid black;
 
 .hidden {
     display: none;
+}
+
+.default-button {
+    width: 120px;
+    height: 32px;
+    font-size: 1rem;
+    border-radius: $border-radius-default;
+    margin: 4px;
+
+    &:focus {
+        outline: none;
+    }
 }
