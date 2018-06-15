@@ -4,10 +4,14 @@
 var levelEl;
 var scoreEl;
 var inputBox;
+var hintBtn;
+var reshuffleBtn;
 
 var level = 1;
 var score = 0;
 var numCustomers = 6;
+var hintUsed = false;
+var reshuffleUsed = false;
 var isGameOver = false;
 
 var gameLength = 30000; // 30 second games
@@ -20,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     levelEl = document.getElementById("gameLevel");
     scoreEl = document.getElementById("gameScore");
     inputBox = document.getElementById("gameInput");
+    hintBtn = document.getElementById("hintButton");
+    reshuffleBtn = document.getElementById("reshuffleButton");
 })
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -43,6 +49,7 @@ function levelUp() {
 // Resets the Menu and Sets Orders for All Customers
 function populateGame() {
     resetMenu();
+    resetButtons();
     for (var i = 0; i < numCustomers; i++) {
         setCustomerOrder(i+1, false);
     }
@@ -91,6 +98,38 @@ function setCustomerOrder(custNo, delay = true) {
         customerOrders[custNo] = food;
         orderEl.innerHTML = foodText.join(' ');
     }, timeout);
+}
+
+// Resets Hint and Reshuffle Button
+function resetButtons() {
+    hintUsed = false;
+    reshuffleUsed = false;
+    hintBtn.classList.remove("btn-used");
+    reshuffleBtn.classList.remove("btn-used");
+    hintBtn.innerHTML = "Hint";
+    reshuffleBtn.innerHTML = "Reshuffle";
+}
+
+// If hint is unused, display the menu (max 3 seconds)
+function getHint() {
+    if (!hintUsed) {
+        alert("hint!");
+        hintUsed = true;
+        hintBtn.classList.add("btn-used");
+        hintBtn.innerHTML = "No Hints Left";
+    }
+}
+
+// If reshuffle is unused, reset all customer orders
+function reshuffle() {
+    if (!reshuffleUsed) {
+        reshuffleUsed = true;
+        reshuffleBtn.classList.add("btn-used");
+        reshuffleBtn.innerHTML = "No Shuffles Left";
+        for (var i = 0; i < numCustomers; i++) {
+            setCustomerOrder(i+1, false);
+        }
+    }
 }
 
 // handles submit when enter is pressed

@@ -4,6 +4,8 @@ $timer-height: 30px;
 
 $person-space-width: 120px;
 
+$level-border-radius: 20px;
+$button-border-radius: 15px;
 $basic-border: 1px solid black;
 
 * {
@@ -40,18 +42,57 @@ $basic-border: 1px solid black;
     position: relative;
 
     &__wrapper {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
         width: 100%;
-        text-align: center;
+        height: 100%;
         font-weight: 600;
         font-size: 0.95rem;
+        display: flex;
+        justify-content: space-between;
+
+        & > div {
+            align-self: center;
+        }
+    }
+
+    &__level {
+        display: inline-block;
+        border: $basic-border;
+        border-radius: $level-border-radius;
+        margin: 8px;
+        padding: 4px 12px;
+        background-color: #CDE3F7;
     }
 
     &__spacer {
         width: 100px;
         display: inline-block;
+    }
+
+    &__button {
+        width: 112px;
+        background-color: mediumpurple;
+        border: $basic-border;
+        border-radius: $button-border-radius;
+        padding: 4px;
+        margin-right: 8px;
+        font-size: 0.8rem;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            background-color: #915AC1;
+            box-shadow: inset 0px 0px 5px 0px #652FC3;
+        }
+
+        &.btn-used {
+            background-color: #937DA2;
+
+            &:hover {
+                box-shadow: none;
+            }
+        }
     }
 }
 

@@ -19,9 +19,16 @@
 
         <div class="stats mainSection">
             <div class="stats__wrapper">
-                Level: <span class="stats__level" id="gameLevel">1</span>
-                <span class="stats__spacer"></span>
-                Score: <span class="stats__score" id="gameScore">0</span>
+                <div class="stats__stats">
+                    <div class="stats__level">
+                        Level <span id="gameLevel">1</span>
+                    </div>
+                    Score: <span class="stats__score" id="gameScore">0</span>
+                </div>
+                <div class="stats__buttons">
+                    <button id="hintButton" class="stats__button" onClick="getHint();">Hint</button>
+                    <button id="reshuffleButton" class="stats__button" onClick="reshuffle();">Reshuffle</button>
+                </div>
             </div>
         </div>
 

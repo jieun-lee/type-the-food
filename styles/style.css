@@ -24,16 +24,41 @@
   height: 40px;
   position: relative; }
   .stats__wrapper {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     width: 100%;
-    text-align: center;
+    height: 100%;
     font-weight: 600;
-    font-size: 0.95rem; }
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between; }
+    .stats__wrapper > div {
+      align-self: center; }
+  .stats__level {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 8px;
+    padding: 4px 12px;
+    background-color: #CDE3F7; }
   .stats__spacer {
     width: 100px;
     display: inline-block; }
+  .stats__button {
+    width: 112px;
+    background-color: mediumpurple;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 4px;
+    margin-right: 8px;
+    font-size: 0.8rem; }
+    .stats__button:focus {
+      outline: none; }
+    .stats__button:hover {
+      background-color: #915AC1;
+      box-shadow: inset 0px 0px 5px 0px #652FC3; }
+    .stats__button.btn-used {
+      background-color: #937DA2; }
+      .stats__button.btn-used:hover {
+        box-shadow: none; }
 
 .game {
   height: 360px; }
