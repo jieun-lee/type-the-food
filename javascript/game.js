@@ -67,8 +67,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 // During Game
 
+// increases score by given amount and updates the UI
+function increaseScore(inc) {
+    score += inc;
+    console.log("score is now " + score);
+}
+
+// handles submit when enter is pressed
 function handleWordSubmit() {
     var submitted = inputBox.value;
+    // check if it's being displayed atm
+    if (isInMenu(submitted)) {
+        increaseScore(getPts(submitted) * level);
+    } else if (isInFoodList(submitted)) {
+        console.log("Game Over");
+    }
     console.log(submitted);
     inputBox.value = "";
 }

@@ -57,6 +57,11 @@ function isInMenu(food) {
     return menu.includes(str);
 }
 
+function isInFoodList(food) {
+    var str = food.toLowerCase();
+    return data.includes(str);
+}
+
 // returns an item on the menu or a random item
 function getItem() {
     if (Math.random() >= 0.5) {
