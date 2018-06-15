@@ -31,7 +31,7 @@ var level = 1;
 var lives = 3;
 var gameNo = 0;
 
-var incorrectRejectionPts = -3;
+var incorrectRejectionPts = -5;
 var correctRejectionPts = 2;
 
 var pausedLevelEl;
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 // increases score by given amount and updates the UI
 function increaseScore(inc) {
-    score += inc;
+    score += inc * level;
     scoreEl.innerHTML = score;
 
     if ((score < 0) && (level > 1)) {

@@ -55,7 +55,7 @@ function handleWordSubmit() {
         Object.keys(customerOrders).forEach(function (custId) {
             if ((keyFound === false) && (customerOrders[custId] == submitted)) {
                 if (isInMenu(submitted)) {
-                    increaseScore(getPts(submitted) * level);
+                    increaseScore(getPts(submitted));
                     setCustomerOrder(custId);
                 } else {
                     loseLife();
