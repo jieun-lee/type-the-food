@@ -50,8 +50,13 @@ function levelUp() {
 }
 
 function setCustomerOrder(custNo) {
-    var food = getItem();
-    document.getElementById("orderc" + custNo).children[0].innerHTML = food;
+    var food = getItem().split(' ');
+    for(var i = 0; i < food.length; i++){
+        food[i] = food[i].split('');
+        food[i][0] = food[i][0].toUpperCase(); 
+        food[i] = food[i].join('');
+    }
+    document.getElementById("orderc" + custNo).children[0].innerHTML = food.join(' ');
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
