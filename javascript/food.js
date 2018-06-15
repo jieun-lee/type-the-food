@@ -1,3 +1,24 @@
+/**
+ * Food
+ * 
+ * Parameters:
+ *      - data ([string])
+ *      - menu ([string])
+ *      - menuIncrement (int)
+ *      - numInitialMenuItems (int)
+ *      - numMenuItems (int)
+ *      - pausedMenu (div element)
+ * 
+ * Functions:
+ *      - getPts(food)
+ *      - isInMenu(food)
+ *      - getItem()
+ *      - addToMenu(numAdd)
+ *      - formatDisplayName(name)
+ *      - resetMenu()
+ *      - updateMenuLists()
+ */
+
 var data = [
     "baguette",
     "bao buns",
@@ -70,6 +91,11 @@ var menuIncrement = 2;
 var numInitialMenuItems = 4;
 var numMenuItems = numInitialMenuItems;
 
+var pausedMenu;
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    pausedMenu = document.getElementById("pausedMenuList");
+})
 
 // returns the number of points a food item is worth
 function getPts(food) {
@@ -127,4 +153,30 @@ function formatDisplayName(name) {
 function resetMenu() {
     menu = [];
     addToMenu(numMenuItems);
+}
+
+// Update the Paused Page and Hint Pages with New Menu
+function updateMenuLists() {
+
+    // remove all existent menu items
+    pausedMenu.innerHTML = "";
+    for (var i = 0; i < 8; i++) {
+        document.getElementById("hintItem" + (i+1)).innerHTML = "";
+    }
+
+    // loop through new menu
+    for (var i = 0; i < menu.length; i++) {
+        // get formatted menu item
+        var menuItem = formatDisplayName(menu[i]);
+
+        // change text on hint page menu
+        document.getElementById("hintItem" + (i+1)).innerHTML = menuItem;
+
+        // add new nodes for paused page menu
+        var node = document.createElement("div");
+        var textNode = document.createTextNode(menuItem);
+        node.classList.add("game__paused__menu__item");
+        node.appendChild(textNode);
+        pausedMenu.appendChild(node);
+    }
 }
