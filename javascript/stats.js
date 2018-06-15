@@ -48,6 +48,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 function increaseScore(inc) {
     score += inc;
     scoreEl.innerHTML = score;
+
+    if ((score < 0) && (level > 1)) {
+        setGameOver();
+    }
 }
 
 // lose a life when we take the order of something not on the menu
