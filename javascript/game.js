@@ -10,6 +10,7 @@ var score = 0;
 var numCustomers = 6;
 var isGameOver = false;
 
+var gameLength = 30000; // 30 second games
 var incorrectRejectionPts = -1;
 var correctRejectionPts = 2;
 
@@ -45,6 +46,7 @@ function populateGame() {
     for (var i = 0; i < numCustomers; i++) {
         setCustomerOrder(i+1, false);
     }
+    // handleTimer();
 }
 
 // Game Over State
@@ -133,6 +135,23 @@ function keyDownHandler(e) {
 		// 13 = enter key
 		handleWordSubmit();
 	}
+}
+
+function handleTimer() {
+    var timerBar = document.getElementById("timer-bar");
+    var percentage = 100;
+    var tickLength = gameLength / 400;
+    timerBar.style.width = "100%";
+
+    var timer = setInterval(function() {
+        percentage = percentage - 0.25;
+        timerBar.style.width = percentage + "%";
+    }, tickLength);
+
+    setTimeout(function() {
+        timerBar.style.width = "0%";
+        clearInterval(timer);
+    }, gameLength);
 }
 
 
