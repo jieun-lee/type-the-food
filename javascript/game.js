@@ -121,9 +121,9 @@ function populateGame() {
 // Ends the Current Round
 function endRound() {
     if (!isGameOver) {
-        setCurrentPage("pausedPage");
         if (level < maxLevel) {
             levelUp();
+            setCurrentPage("pausedPage");
         } else {
             setGameOver();
         }
@@ -214,7 +214,7 @@ function resetButtons() {
 
 // If hint is unused, display the menu (max 3 seconds)
 function getHint() {
-    if (!hintUsed) {
+    if (!hintUsed && !isGameOver && (currentPage === "playingPage")) {
         alert("hint!");
         hintUsed = true;
         hintBtn.classList.add("btn-used");
@@ -224,7 +224,7 @@ function getHint() {
 
 // If reshuffle is unused, reset all customer orders
 function reshuffle() {
-    if (!reshuffleUsed) {
+    if (!reshuffleUsed && !isGameOver && (currentPage === "playingPage")) {
         reshuffleUsed = true;
         reshuffleBtn.classList.add("btn-used");
         reshuffleBtn.innerHTML = "No Shuffles Left";
