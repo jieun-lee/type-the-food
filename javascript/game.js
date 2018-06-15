@@ -17,13 +17,19 @@ var reshuffleBtn;
 var score = 0;
 var level = 1;
 var maxLevel = 3;
+var lives = 3;
+var maxLives = 3;
+
 var numCustomers = 6;
+
 var hintUsed = false;
 var reshuffleUsed = false;
 var isGameOver = false;
 
+var timer = ""; // empty string when timer is not active
+var timerBar;
 var gameLength = 30000; // 30 second games
-var incorrectRejectionPts = -1;
+var incorrectRejectionPts = -3;
 var correctRejectionPts = 2;
 
 var customerOrders = {};
@@ -40,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     inputBox = document.getElementById("gameInput");
     hintBtn = document.getElementById("hintButton");
     reshuffleBtn = document.getElementById("reshuffleButton");
+    timerBar = document.getElementById("timer-bar");
 })
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -111,18 +118,22 @@ function populateGame() {
     }
 }
 
+// Ends the Current Round
 function endRound() {
-    setCurrentPage("pausedPage");
-    if (level < maxLevel) {
-        levelUp();
-    } else {
-        setGameOver();
+    if (!isGameOver) {
+        setCurrentPage("pausedPage");
+        if (level < maxLevel) {
+            levelUp();
+        } else {
+            setGameOver();
+        }
     }
 }
 
 // Game Over State
 function setGameOver() {
     isGameOver = true;
+    stopTimer();
     console.log("Game Over!");
 }
 
@@ -223,6 +234,25 @@ function reshuffle() {
     }
 }
 
+// lose a life when we take the order of something not on the menu
+// game over when we run out of lives
+function loseLife() {
+    lives--;
+    switch (lives) {
+        case 2:
+            document.getElementById("life1").classList.add("lost-life");
+            break;
+        case 1:
+            document.getElementById("life2").classList.add("lost-life");
+            break;
+        default:
+            if (lives < 1) {
+                document.getElementById("life3").classList.add("lost-life");
+                setGameOver();
+            }
+    }
+}
+
 // handles submit when enter is pressed
 function handleWordSubmit() {
     var submitted = inputBox.value.toLowerCase();
@@ -237,7 +267,7 @@ function handleWordSubmit() {
                     increaseScore(getPts(submitted) * level);
                     setCustomerOrder(custId);
                 } else {
-                    setGameOver();
+                    loseLife();
                 }
                 keyFound = true;
             }
@@ -267,20 +297,29 @@ function keyDownHandler(e) {
 	}
 }
 
+// Stops the Timer
+function stopTimer() {
+    if (timer !== "") {
+        timerBar.style.width = "0%";
+        clearInterval(timer);
+        timer = "";
+    }
+}
+
+// Handles Timer Bar
 function handleTimer() {
-    var timerBar = document.getElementById("timer-bar");
+    
     var percentage = 100;
     var tickLength = gameLength / 400;
     timerBar.style.width = "100%";
 
-    var timer = setInterval(function() {
+    timer = setInterval(function() {
         percentage = percentage - 0.25;
         timerBar.style.width = percentage + "%";
     }, tickLength);
 
     setTimeout(function() {
-        timerBar.style.width = "0%";
-        clearInterval(timer);
+        stopTimer();
         endRound();
     }, gameLength);
 }

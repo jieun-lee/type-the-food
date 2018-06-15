@@ -43,8 +43,11 @@ $basic-border: 1px solid black;
     position: relative;
 
     &__wrapper {
-        width: 100%;
-        height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
         font-weight: 600;
         font-size: 0.95rem;
         display: flex;
@@ -59,7 +62,7 @@ $basic-border: 1px solid black;
         display: inline-block;
         border: $basic-border;
         border-radius: $level-border-radius;
-        margin: 8px;
+        margin: 0 8px;
         padding: 4px 12px;
         background-color: #CDE3F7;
     }
@@ -67,6 +70,28 @@ $basic-border: 1px solid black;
     &__spacer {
         width: 100px;
         display: inline-block;
+    }
+
+    &__button-bar {
+        position: relative;
+    }
+
+    &__life-bar {
+        position: absolute;
+        left: -80px;
+        top: 1px;
+
+        &__life {
+            display: inline-block;
+            color: #E02E6A;
+            font-size: 1.2rem;
+            transform: scaleX(1.2);
+            margin: 0 2px;
+
+            &.lost-life {
+                color: #889ED5;
+            }
+        }
     }
 
     &__button {

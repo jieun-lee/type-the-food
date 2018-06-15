@@ -24,8 +24,11 @@
   height: 40px;
   position: relative; }
   .stats__wrapper {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     font-weight: 600;
     font-size: 0.95rem;
     display: flex;
@@ -36,12 +39,26 @@
     display: inline-block;
     border: 1px solid black;
     border-radius: 20px;
-    margin: 8px;
+    margin: 0 8px;
     padding: 4px 12px;
     background-color: #CDE3F7; }
   .stats__spacer {
     width: 100px;
     display: inline-block; }
+  .stats__button-bar {
+    position: relative; }
+  .stats__life-bar {
+    position: absolute;
+    left: -80px;
+    top: 1px; }
+    .stats__life-bar__life {
+      display: inline-block;
+      color: #E02E6A;
+      font-size: 1.2rem;
+      transform: scaleX(1.2);
+      margin: 0 2px; }
+      .stats__life-bar__life.lost-life {
+        color: #889ED5; }
   .stats__button {
     width: 112px;
     background-color: mediumpurple;
