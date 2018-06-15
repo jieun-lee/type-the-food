@@ -68,12 +68,16 @@ function setCurrentPage(page) {
         currentPage = page;
         switch (page) {
             case "instructionsPage":
+                toggleInputBox(false);
                 instructionsPage.classList.remove("hidden");
                 break;
             case "pausedPage":
+                toggleInputBox(false);
                 pausedPage.classList.remove("hidden");
                 break;
             case "playingPage":
+                toggleInputBox(true);
+                inputBox.focus();
                 playingPage.classList.remove("hidden");
                 break;
         }
@@ -153,6 +157,12 @@ function updateMenuLists() {
         node.appendChild(menuItem);
         pausedMenu.appendChild(node);
     }
+}
+
+// enables/disables input box
+function toggleInputBox(enabled) {
+    inputBox.value = "";
+    inputBox.disabled = !enabled;
 }
 
 ///////////////////////////////////////////////////////////////////
