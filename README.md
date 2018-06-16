@@ -36,7 +36,7 @@ These points will be multiplied by your current level number (i.e. the points aw
 * Penalty for incorrect order (type food name that wasn't on the menu): lose 1 life
 
 You have 3 lives total for the entire game (i.e. for all 3 levels); the game will end when you run out of lives.
-The game will also end if you end up with negative points (i.e. lose too many points from incorrect rejections) starting from level 2.
+The game will also end if you end up with negative points (i.e. lose too many points from incorrect rejections).
 
 
 ### Further Improvements

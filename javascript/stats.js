@@ -49,7 +49,7 @@ function increaseScore(inc) {
     score += inc * level;
     scoreEl.innerHTML = score;
 
-    if ((score < 0) && (level > 1)) {
+    if (score < 0) {
         setGameOver();
     }
 }

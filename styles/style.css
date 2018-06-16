@@ -149,7 +149,11 @@
       border: 1px solid black;
       width: 120px;
       height: 80%;
-      align-self: flex-end; }
+      align-self: flex-end;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem; }
     .game__playing__customer__table {
       display: flex;
       flex-direction: row;

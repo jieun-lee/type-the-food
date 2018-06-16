@@ -135,7 +135,6 @@ function addToMenu(numAdd) {
 
         menu.push(data[index]);
     }
-    console.log(menu);
 }
 
 // format food name to capitalize first letter of each word

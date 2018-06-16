@@ -237,6 +237,11 @@ $basic-border: 1px solid black;
                 width: $person-space-width;
                 height: 80%;
                 align-self: flex-end;
+                // for customer number (remove when characters are available)
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
             }
 
             &__table {

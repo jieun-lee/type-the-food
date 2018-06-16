@@ -42,7 +42,7 @@ function launchModal(type = "hint") {
             gameOverMsg.innerHTML = "No more lives";
         } else if (level >= maxLevel) {
             gameOverMsg.innerHTML = "All 3 Levels Complete!";
-        } else if ((score < 0) && level > 1) {
+        } else if (score < 0) {
             gameOverMsg.innerHTML = "Lost too many points";
         } else {
             gameOverMsg.innerHTML = "";
