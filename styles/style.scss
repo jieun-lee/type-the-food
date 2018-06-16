@@ -188,6 +188,11 @@ $basic-border: 1px solid black;
             }
 
             &__hint {
+                &__menu {
+                    display: flex;
+                    justify-content: center;
+                }
+
                 &__col {
                     display: inline-block;
                     margin: 0 16px;

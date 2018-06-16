@@ -22,7 +22,7 @@
  *      - resetStats()
  */
 
-var maxLevel = 3;
+var maxLevel = 5;
 var maxLives = 3;
 
 var score = 0;

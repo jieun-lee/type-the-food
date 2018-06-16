@@ -121,6 +121,9 @@
       .game__playing__modal__title {
         margin-top: 0;
         margin-bottom: 16px; }
+      .game__playing__modal__hint__menu {
+        display: flex;
+        justify-content: center; }
       .game__playing__modal__hint__col {
         display: inline-block;
         margin: 0 16px; }

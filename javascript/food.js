@@ -87,7 +87,7 @@ var data = [
 ];
 
 var menu = [];
-var menuIncrement = 2;
+var menuIncrement = 1;
 var numInitialMenuItems = 4;
 var numMenuItems = numInitialMenuItems;
 
