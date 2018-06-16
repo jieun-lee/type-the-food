@@ -40,5 +40,4 @@ The game will also end if you end up with negative points (i.e. lose too many po
 * Improving the overall look and design (customer images, button hovering, order highlighting)
 * Time Limit on order (not confirmed)
 
-I would highly appreciate it if you could fill out this feedback form after trying out the game, as it would help me make this game better :) Thank you!
-* https://goo.gl/forms/L914CQ0pzfxPUAep1
+I would highly appreciate it if you could fill out this [feedback form](https://goo.gl/forms/L914CQ0pzfxPUAep1) after trying out the game, as it would help me make this game better :) Thank you!
