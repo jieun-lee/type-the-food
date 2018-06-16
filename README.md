@@ -8,12 +8,19 @@ Game made with JavaScript that involves typing food names as fast as possible.
 * Your task is to take their order if it is on the menu, and reject it if it is not.
 
 
+### Download Instructions
+* This game is made with HTML, CSS, and JavaScript.
+* Simply clone the repo or download as a zip (and unzip).
+* Open "main.html" on the browser of your choice to play! (Note: this game works best on Google Chrome.)
+
+
 ### Game Instructions
 * At the start of each level, you will be given a list of menu items.
 * Memorize these - you won't be able to see them during the game!
 * Type the name of the food items ordered by the customers that were on the menu.
 * Type the customer's number if they ordered something that wasn't on the menu.
 * Press the Enter key after typing something to submit - typing something that isn't a customer number or not being ordered will have no effect on the game.
+* Typing is CaSe InSeNsItIvE.
 * You will be given one hint at each level/round - this is a chance to take another look at the menu. However, you will not be able to take orders (type) while viewing the menu.
 * You will be given one reshuffle at each level/round - that is, a chance to get all customers to make a new order.
 * There are three levels total, with 4, 6, and 8 menu items respectively. Some of these menu items may overlap, but most of them will be reset at each stage.
