@@ -23,7 +23,7 @@ Game made with JavaScript that involves typing food names as fast as possible.
 * Typing is CaSe InSeNsItIvE.
 * You will be given one hint at each level/round - this is a chance to take another look at the menu. However, you will not be able to take orders (type) while viewing the menu.
 * You will be given one reshuffle at each level/round - that is, a chance to get all customers to make a new order.
-* There are three levels total, with 4, 6, and 8 menu items respectively. Some of these menu items may overlap, but most of them will be reset at each stage.
+* There are five levels total, with 4, 5, 6, 7, and 8 menu items respectively. Some of these menu items may overlap, but most of them will be reset at each stage.
 * Each level is 30 seconds long.
 
 
