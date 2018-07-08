@@ -8,6 +8,7 @@
  * 
  * Functions:
  *      - setCustomerOrder(custNo, delay)
+ *      - toggleCustomerImg(custNo, ordering)
  *      - handleWordSubmit()
  *      - toggleInputBox()
  *      - keyDownHandler()
@@ -25,11 +26,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 // adds a new order for the given customer
 function setCustomerOrder(custNo, delay = true) {
     var timeout = 2000;
-    var orderEl = document.getElementById("orderc" + custNo).children[0];
+    var orderEl = document.getElementById("orderc" + custNo);
 
     // remove current order
     customerOrders[custNo] = null;
-    orderEl.innerHTML = "";
+    orderEl.classList.add("invisible");
+    toggleCustomerImg(custNo, false);
 
     // set timeout to 0 if there should not be a delay
     if (!delay) {
@@ -40,8 +42,20 @@ function setCustomerOrder(custNo, delay = true) {
     setTimeout(function() {
         var food = getItem();
         customerOrders[custNo] = food;
-        orderEl.innerHTML = formatDisplayName(food);
+        toggleCustomerImg(custNo, true);
+        orderEl.classList.remove("invisible");
+        orderEl.children[0].innerHTML = formatDisplayName(food);
     }, timeout);
+}
+
+// sets the given customer's image to given state (ordering vs menu)
+function toggleCustomerImg(custNo, ordering = true) {
+    var custEl = document.getElementById("cust" + custNo + "-img");
+    if (ordering) {
+        custEl.src = "images/char" + custNo + "-order.jpg";
+    } else {
+        custEl.src = "images/char" + custNo + "-menu.jpg";
+    }
 }
 
 // handles submit when enter is pressed
