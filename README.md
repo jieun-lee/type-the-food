@@ -1,5 +1,6 @@
 # Type the Food
 Game made with JavaScript that involves typing food names as fast as possible.
+View [Here](https://jieun-lee.github.io/type-the-food/main.html)
 
 
 ### Scenario
